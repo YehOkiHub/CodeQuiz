@@ -2,43 +2,17 @@ let startBtn = document.getElementById("start");
 let containerEl = document.getElementById("container");
 let timerEl = document.getElementById("timer");
 let scoreEl = document.getElementById("score");
-let questionEl = document.querySelector("question");
 let questconEl = document.querySelector('questcontainer');
 let choiceA = document.getElementById("choiceA");
 let choiceB = document.getElementById("choiceB");
-let choicesC = document.getElementById("choiceC");
-let choicesD = document.getElementById("choiceD");
+let choiceC = document.getElementById("choiceC");
+let choiceD = document.getElementById("choiceD");
 
 let correctAns = 0;
 let questionNum = 0;
-
-
-
-document.getElementById('container').style.visibility = "hidden";
-startBtn.addEventListener("click", start);
-
-
-function start() {
-    startBtn.style.visibility='hidden';
-    containerEl.style.visibility = "visible";
-    let currentQuestionsIndex = 0;
-    getQuestion()
-
-    function getQuestion() {
-        const currentQuestionObj = questionsArray[currentQuestionsIndex];
-        console.log(currentQuestionObj);
-        currentQuestionsIndex++
-    
-    
-    }
-     
-
-    
-    
-    
-    
-
+let currentQuestionsIndex = 0;   
 const questionsArray = [
+
     {
        question: 'What language mainly spoken in Ancient Rome?',
        choices: ['Roman', 'Italian', 'Spanish', 'Latin'],
@@ -76,6 +50,49 @@ const questionsArray = [
 
 ]
 
+
+document.getElementById('container').style.visibility = "hidden";
+startBtn.addEventListener("click", start);
+
+
+function getQuestion() {
+    const currentQuestionObj = questionsArray[currentQuestionsIndex];
+    const questionEl = document.getElementsByClassName('question')[0]
+    questionEl.textContent = questionsArray[currentQuestionsIndex].question
+    let choicesEL1  = document.getElementById('choiceA')
+    choicesEL1.textContent = questionsArray[currentQuestionsIndex].choices[0]
+    let choicesEL2  = document.getElementById('choiceB')
+    choicesEL2.textContent = questionsArray[currentQuestionsIndex].choices[1]
+    let choicesEL3 = document.getElementById('choiceC')
+    choicesEL3.textContent = questionsArray[currentQuestionsIndex].choices[2]
+    let choicesEL4 = document.getElementById('choiceD')
+    choicesEL4.textContent = questionsArray[currentQuestionsIndex].choices[3]
+    
+    
+    
+
+
+}
+
+function start() {
+    startBtn.style.visibility='hidden';
+    containerEl.style.visibility = "visible";
+    getQuestion()
+    
+            
+}
+    
+    
+    
+    
+
+
+
+
+
+
+
+   
 
     // 1. Have your question array
     // 2. Create a variable that determines what question the user is on
@@ -126,7 +143,7 @@ const questionsArray = [
     
 
 
-    }
+    
 
    
 
