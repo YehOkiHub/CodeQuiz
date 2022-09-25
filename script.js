@@ -51,6 +51,7 @@ const questionsArray = [
 ]
 
 
+
 document.getElementById('container').style.visibility = "hidden";
 startBtn.addEventListener("click", start);
 
@@ -67,8 +68,17 @@ function getQuestion() {
     choicesEL3.textContent = questionsArray[currentQuestionsIndex].choices[2]
     let choicesEL4 = document.getElementById('choiceD')
     choicesEL4.textContent = questionsArray[currentQuestionsIndex].choices[3]
-    
-    
+    const buttonNext = document.querySelectorAll("btn")
+    buttonNext.addEventListener("click", )
+    // for(let i = 0; i < buttonNext.length; i++) {
+    //     buttons[i].addEventListener("click", next)
+
+
+
+
+    // }
+
+        
     
 
 
@@ -84,7 +94,11 @@ function start() {
     
     
     
-    
+function next() {
+    console.log('hello');
+
+
+}    
 
 
 
@@ -160,10 +174,7 @@ function start() {
     
     
 
-// function next() {
 
-
-// }
 
 // function answer() {
 

@@ -47,6 +47,8 @@ h2 {
    border: 5px solid rgb(219, 153, 11);
    max-height:  1000px;
    padding: 20px;
+   background-color: rgb(194, 26, 26);
+   border-radius: 5px;
 
 }
 
