@@ -1,13 +1,15 @@
-let startBtn = document.getElementById("start");
-let containerEl = document.getElementById("container");
-let timerEl = document.getElementById("timer");
-let scoreEl = document.getElementById("score");
-let questconEl = document.querySelector('questcontainer');
-let choiceA = document.getElementById("choiceA");
-let choiceB = document.getElementById("choiceB");
-let choiceC = document.getElementById("choiceC");
-let choiceD = document.getElementById("choiceD");
+var startBtn = document.getElementById("start");
+var containerEl = document.getElementById("container");
+var timerEl = document.getElementById("timer");
+var scoreEl = document.getElementById("score");
+var questconEl = document.getElementsByClassName('questcontainer')[0];
+var choiceA = document.getElementById("choiceA");
+var choiceB = document.getElementById("choiceB");
+var choiceC = document.getElementById("choiceC");
+var choiceD = document.getElementById("choiceD");
 
+
+const buttonNext = document.querySelectorAll(".btn")
 let correctAns = 0;
 let questionNum = 0;
 let currentQuestionsIndex = 0;   
@@ -68,8 +70,9 @@ function getQuestion() {
     choicesEL3.textContent = questionsArray[currentQuestionsIndex].choices[2]
     let choicesEL4 = document.getElementById('choiceD')
     choicesEL4.textContent = questionsArray[currentQuestionsIndex].choices[3]
-    const buttonNext = document.querySelectorAll("btn")
-    buttonNext.addEventListener("click", )
+
+    currentQuestionsIndex
+    
     // for(let i = 0; i < buttonNext.length; i++) {
     //     buttons[i].addEventListener("click", next)
 
@@ -92,17 +95,20 @@ function start() {
             
 }
     
-    
-    
-function next() {
+
+function next(event) {
+    console.log(event.target, "event.target")
     console.log('hello');
+    const questionEl = document.getElementsByClassName('question')[0]
+    
+
+}   
+
+  
 
 
-}    
 
-
-
-
+// buttonNext.addEventListener("click", next)
 
 
 
