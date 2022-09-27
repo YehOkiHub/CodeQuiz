@@ -2,147 +2,172 @@ var startBtn = document.getElementById("start");
 var containerEl = document.getElementById("container");
 var timerEl = document.getElementById("timer");
 var scoreEl = document.getElementById("score");
-var questconEl = document.getElementsByClassName('questcontainer')[0];
+var questconEl = document.getElementsByClassName("questcontainer")[0];
 var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
 var choiceD = document.getElementById("choiceD");
+var timeleft = 60;
 
+const questionEl = document.getElementsByClassName("question")[0];
+let choicesEL1 = document.getElementById("choiceA");
+let choicesEL2 = document.getElementById("choiceB");
+let choicesEL3 = document.getElementById("choiceC");
+let choicesEL4 = document.getElementById("choiceD");
 
-const buttonNext = document.querySelectorAll(".btn")
+const buttonNext = document.querySelectorAll(".btn");
+
+let totalScore = 0;
 let correctAns = 0;
 let questionNum = 0;
-let currentQuestionsIndex = 0;   
+let currentQuestionsIndex = 0;
+
+
+
+
+
 const questionsArray = [
+  {
+    question: "What language mainly spoken in Ancient Rome?",
+    choices: ["Roman", "Italian", "Spanish", "Latin"],
+    answer: "Latin",
+  },
 
-    {
-       question: 'What language mainly spoken in Ancient Rome?',
-       choices: ['Roman', 'Italian', 'Spanish', 'Latin'],
-       answer: 'Latin'
+  {
+    question: "What type of weapon was the Roman Gladius",
+    choices: ["Spear", "Bow", "Scutum", "Short Sword"],
+    answer: "Short Sword",
+  },
 
-    },
+  {
+    question:
+      "What Roman Emperor came to power after the assassination of Julius Casear",
+    choices: ["Augustus", "Nero", "Hadrian", "Caligula"],
+    answer: "Augustus",
+  },
 
-    {
-        question: 'What type of weapon was the Roman Gladius',
-        choices: ['Spear', 'Bow', 'Scutum', 'Short Sword'],
-        answer: 'Short Sword'
- 
-     },
+  {
+    question: "Where did Rome build Hadrian's Wall ",
+    choices: ["Germania", "Gaul", "Egypt", "Britannia"],
+    answer: "Britannia",
+  },
 
-     {
-        question: 'What Roman Emperor came to power after the assassination of Julius Casear',
-        choices: ['Augustus', 'Nero', 'Hadrian', 'Caligula'],
-        answer: 'Augustus'
- 
-     },
+  {
+    question: "Which general from Carthage crossed the Alps to attack Rome",
+    choices: ["Hannibal", "Spartacus", "Pullo", "Theodoric"],
+    answer: "Hannibal",
+  },
+];
 
-     {
-        question: "Where did Rome build Hadrian's Wall ",
-        choices: ['Germania', 'Gaul', 'Egypt', 'Britannia'],
-        answer: 'Britannia'
- 
-     },
-
-     {
-        question: "Which general from Carthage crossed the Alps to attack Rome",
-        choices: ['Hannibal', 'Spartacus', 'Pullo', 'Theodoric'],
-        answer: 'Hannibal'
- 
-     }
-
-]
-
-
-
-document.getElementById('container').style.visibility = "hidden";
-startBtn.addEventListener("click", start);
-
+document.getElementById("container").style.visibility = "hidden";
+startBtn.addEventListener("click", function () {
+  var downloadTimer = setInterval(function () {
+    if (timeleft <= 0) {
+      clearInterval(downloadTimer);
+      timerEl.innerHTML = "Game Over";
+    } 
+    else {
+      timeleft--;
+      timerEl.innerHTML = timeleft + " seconds remaining";
+    }
+  }, 1000);
+  getQuestion();
+});
 
 function getQuestion() {
-    const currentQuestionObj = questionsArray[currentQuestionsIndex];
-    const questionEl = document.getElementsByClassName('question')[0]
-    questionEl.textContent = questionsArray[currentQuestionsIndex].question
-    let choicesEL1  = document.getElementById('choiceA')
-    choicesEL1.textContent = questionsArray[currentQuestionsIndex].choices[0]
-    let choicesEL2  = document.getElementById('choiceB')
-    choicesEL2.textContent = questionsArray[currentQuestionsIndex].choices[1]
-    let choicesEL3 = document.getElementById('choiceC')
-    choicesEL3.textContent = questionsArray[currentQuestionsIndex].choices[2]
-    let choicesEL4 = document.getElementById('choiceD')
-    choicesEL4.textContent = questionsArray[currentQuestionsIndex].choices[3]
+  // event.preventDefault()
+  currentQuestionsIndex++;
+    if(currentQuestionsIndex === questionsArray.length) {
+    endQuiz()
+} else {
+//   for (let i = 0; i < questionsArray.length; i++) {
 
-    currentQuestionsIndex
-    
-    // for(let i = 0; i < buttonNext.length; i++) {
-    //     buttons[i].addEventListener("click", next)
-
-
-
-
-    // }
-
-        
-    
-
-
+    questionEl.innerHTML = questionsArray[currentQuestionsIndex].question;
+    choicesEL1.innerHTML = questionsArray[currentQuestionsIndex].choices[0];
+    choicesEL2.innerHTML = questionsArray[currentQuestionsIndex].choices[1];
+    choicesEL3.innerHTML = questionsArray[currentQuestionsIndex].choices[2];
+    choicesEL4.innerHTML = questionsArray[currentQuestionsIndex].choices[3];
 }
 
-function start() {
-    startBtn.style.visibility='hidden';
-    containerEl.style.visibility = "visible";
-    getQuestion()
-    
-            
+function checkAnswer(event) {
+        if (element === questionsArray[currentQuestionsIndex].answer) {
+        console.log("correct " + totalScore)
+        totalScore++
+      }   else {
+        console.log("wrong")
+        totalScore--
+          if(totalScore <= 0) {
+            totalScore = 0
+        }
+    }
 }
+
+// checkAnswer()
+
+
+//   }
+  startBtn.style.visibility = "hidden";
+  containerEl.style.visibility = "visible";
+}
+// function start() {
+
+//   getQuestion();
+// }
+
+choicesEL1.addEventListener("click", getQuestion);
+choicesEL2.addEventListener("click", getQuestion);
+choicesEL3.addEventListener("click", getQuestion);
+choicesEL4.addEventListener("click", getQuestion);
+
+function endQuiz() {
+    currentQuestionsIndex = 0;
+    questionEl.innerHTML = "Quiz Over!"
+    questconEl.style.display = "none";
     
+}
+
 
 function next(event) {
-    console.log(event.target, "event.target")
-    console.log('hello');
-    const questionEl = document.getElementsByClassName('question')[0]
-    
+  event.preventDefault();
+  console.log(event.target, "event.target");
 
-}   
-
-  
+  getQuestion();
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // increasing score and decreasing timer
+  // make sure parent index is less than questionArray.length -1 increase current index if it is less
+  // call get question function
+  // if last question, hide questions container, display input box and total score
+}
 
 // buttonNext.addEventListener("click", next)
 
-
-
-   
-
-    // 1. Have your question array
-    // 2. Create a variable that determines what question the user is on
-    // 3. Create a for loop to iterate through the question array based on the current question variable mentioned above
-    // 4. Create variables for your buttons in the html
-    // 5. Have the text of the buttons equal to the answers of the current question
-    // 6. Once the user selects an answer, increment the current question variable in step 2
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 1. Have your question array
+// 2. Create a variable that determines what question the user is on
+// 3. Create a for loop to iterate through the question array based on the current question variable mentioned above
+// 4. Create variables for your buttons in the html
+// 5. Have the text of the buttons equal to the answers of the current question
+// 6. Once the user selects an answer, increment the current question variable in step 2
 
 // var startTimer = setInterval(function() {
 //     totalTime--;
@@ -155,44 +180,14 @@ function next(event) {
 //     }
 // },1000);
 
+// let question1 = JSON.stringify(questionsArray[0]);
+// questconEl.innertext = (questionsArray[0]);
 
-
-
-
-    
-    
-
-
-    
-
-   
-
-    
-
-
-    // let question1 = JSON.stringify(questionsArray[0]);
-    // questconEl.innertext = (questionsArray[0]);
-    
-
-    // document.getElementById("questcontainer").innerText = questionsArray[0];
-    
-    
-    
-    
-
-
+// document.getElementById("questcontainer").innerText = questionsArray[0];
 
 // function answer() {
 
-
 // }
-
-
-
-
-
-
-
 
 // function displayTest() {
 //     document.getElementById('container').style.visibility = "visible";;
@@ -208,3 +203,5 @@ function next(event) {
 //         }
 //         timeLeft -= 1;
 //       }, 1000);
+
+{/* <h2 id="score"> You scored ${quiz.score} of ${quiz.question.length} </h2> */}
