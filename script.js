@@ -7,6 +7,7 @@ var choiceA = document.getElementById("choiceA");
 var choiceB = document.getElementById("choiceB");
 var choiceC = document.getElementById("choiceC");
 var choiceD = document.getElementById("choiceD");
+var headerEl = document.getElementsByTagName("header");
 var timeleft = 60;
 
 const questionEl = document.getElementsByClassName("question")[0];
@@ -111,7 +112,8 @@ function checkAnswer(event) {
         totalScore++
         }   
         else { 
-            timerEl.innerHTML = timeleft - 5 + " seconds remaining";    
+            timeleft -= 5
+            timerEl.innerHTML = timeleft + " seconds remaining";    
               console.log("wrong")
               totalScore --                     
         if(totalScore <= 0) {
@@ -142,12 +144,35 @@ function endQuiz() {
     scoreEl.innerText = `Your Score was ${totalScore} of 4`;
     questconEl.style.display = "none";
     if(currentQuestionsIndex === 0){
-        
-
         timerEl.style.visibility = "hidden"
+    }
+    if(window.confirm("Save Score?")){
 
+        let name = prompt("Enter Your name");
+
+        let highScoreObj = {
+            name:  name,
+            score: totalScore
+        }
+        let myObj_serialized =JSON.stringify(highScoreObj);
+        localStorage.setItem("myObj", myObj_serialized);
+        let myObj_deserialized = JSON.parse(localStorage.getItem("myObj"));
+        console.log(myObj_deserialized);
+        // scoreEl.textContent = myObj_deserialized
+
+
+        
+    
+               
 
     }
+    
+
+    
+    
+    
+
+
         
 }
 
@@ -157,8 +182,6 @@ function next(event) {
   console.log(event.target, "event.target");
 
   getQuestion();
-
-
 
 
 
