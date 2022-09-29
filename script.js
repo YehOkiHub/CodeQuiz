@@ -16,7 +16,7 @@ let choicesEL2 = document.getElementById("choiceB");
 let choicesEL3 = document.getElementById("choiceC");
 let choicesEL4 = document.getElementById("choiceD");
 
-const buttonNext = document.querySelectorAll(".btn");
+
 
 let totalScore = 0;
 let correctAns = 0;
@@ -25,7 +25,7 @@ let currentQuestionsIndex = 0;
 
 
 
-
+// questions choices and answers
 
 const questionsArray = [
   {
@@ -59,7 +59,7 @@ const questionsArray = [
     answer: "Hannibal",
   },
 ];
-
+// starts timer and shows game over if time is up
 document.getElementById("container").style.visibility = "hidden";
 startBtn.addEventListener("click", function () {
 var downloadTimer = setInterval(function () {
@@ -76,14 +76,12 @@ var downloadTimer = setInterval(function () {
   getQuestion();
 });
 
+// displays questions and choices as well as hide start button
 function getQuestion() {
-  // event.preventDefault()
-  currentQuestionsIndex++;
+    currentQuestionsIndex++;
     if(currentQuestionsIndex === questionsArray.length) {
     endQuiz()
 } else {
-//   for (let i = 0; i < questionsArray.length; i++) {
-
     questionEl.innerHTML = questionsArray[currentQuestionsIndex].question;
     choicesEL1.innerHTML = questionsArray[currentQuestionsIndex].choices[0];
     choicesEL2.innerHTML = questionsArray[currentQuestionsIndex].choices[1];
@@ -91,20 +89,14 @@ function getQuestion() {
     choicesEL4.innerHTML = questionsArray[currentQuestionsIndex].choices[3];
 }
 
-
-
-// checkAnswer()
-
-
-//   }
   startBtn.style.visibility = "hidden";
   containerEl.style.visibility = "visible";
 }
 
-
+// checks the answer as well as deducts timer for wrong answers
 function checkAnswer(event) {
         
-    //gets the value of button clicked using event.target
+    
     console.log(event.target.textContent);
         var element= event.target.textContent
         if (element === questionsArray[currentQuestionsIndex].answer) {
@@ -125,19 +117,13 @@ function checkAnswer(event) {
 }
 
 
-
-// function start() {
-
-//   getQuestion();
-// }
-
 choicesEL1.addEventListener("click", checkAnswer);
 choicesEL2.addEventListener("click", checkAnswer);
 choicesEL3.addEventListener("click", checkAnswer);
 choicesEL4.addEventListener("click", checkAnswer);
 
 
-
+// Asks user if they want to save score as well as stores score in local memory. Displays high score after
 function endQuiz() {
     currentQuestionsIndex = 0;
     questionEl.innerHTML = "Quiz Over!"
@@ -158,98 +144,20 @@ function endQuiz() {
         localStorage.setItem("myObj", myObj_serialized);
         let myObj_deserialized = JSON.parse(localStorage.getItem("myObj"));
         console.log(myObj_deserialized);
-        // scoreEl.textContent = myObj_deserialized
+        scoreEl.textContent = myObj_deserialized.name +" Has a high score of " + myObj_deserialized.score
 
 
-        
-    
+            
                
 
     }
-    
-
-    
-    
-    
-
-
-        
+               
 }
 
 
 function next(event) {
   event.preventDefault();
-  console.log(event.target, "event.target");
-
-  getQuestion();
+   getQuestion();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // increasing score and decreasing timer
-  // make sure parent index is less than questionArray.length -1 increase current index if it is less
-  // call get question function
-  // if last question, hide questions container, display input box and total score
 }
-
-// buttonNext.addEventListener("click", next)
-
-// 1. Have your question array
-// 2. Create a variable that determines what question the user is on
-// 3. Create a for loop to iterate through the question array based on the current question variable mentioned above
-// 4. Create variables for your buttons in the html
-// 5. Have the text of the buttons equal to the answers of the current question
-// 6. Once the user selects an answer, increment the current question variable in step 2
-
-// var startTimer = setInterval(function() {
-//     totalTime--;
-//     timeLeft.textContent = totalTime;
-//     if(totalTime <= 0) {
-//         clearInterval(startTimer);
-//         if (questionIndex < questions.length - 1) {
-//             gameOver();
-//         }
-//     }
-// },1000);
-
-// let question1 = JSON.stringify(questionsArray[0]);
-// questconEl.innertext = (questionsArray[0]);
-
-// document.getElementById("questcontainer").innerText = questionsArray[0];
-
-// function answer() {
-
-// }
-
-// function displayTest() {
-//     document.getElementById('container').style.visibility = "visible";;
-//     document.getElementById('start').style.visibility = "hidden";
-
-//     var downloadTimer = setInterval(function(){
-//         if(timeLeft <= 0){
-//           clearInterval(downloadTimer);
-//           document.getElementById("timer").innerHTML = "Game Over";
-//           window.confirm("Would you like to try again?")
-//         } else {
-//           document.getElementById("timer").innerHTML = timeLeft + " Seconds Remaining";
-//         }
-//         timeLeft -= 1;
-//       }, 1000);
-
-{/* <h2 id="score"> You scored ${quiz.score} of ${quiz.question.length} </h2> */}
