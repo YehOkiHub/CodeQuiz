@@ -35,8 +35,8 @@ const questionsArray = [
 
   {
     question: "What type of weapon was the Roman Gladius",
-    choices: ["Spear", "Bow", "Scutum", "Short Sword"],
-    answer: "Short Sword",
+    choices: ["Spear", "Bow", "Scutum", "Sword"],
+    answer: "Sword",
   },
 
   {
@@ -61,14 +61,15 @@ const questionsArray = [
 
 document.getElementById("container").style.visibility = "hidden";
 startBtn.addEventListener("click", function () {
-  var downloadTimer = setInterval(function () {
+var downloadTimer = setInterval(function () {
     if (timeleft <= 0) {
       clearInterval(downloadTimer);
-      timerEl.innerHTML = "Game Over";
+        timerEl.innerHTML = "Game Over";
     } 
     else {
       timeleft--;
-      timerEl.innerHTML = timeleft + " seconds remaining";
+      timerEl.innerHTML = timeleft + " seconds remaining"; 
+
     }
   }, 1000);
   getQuestion();
@@ -89,18 +90,7 @@ function getQuestion() {
     choicesEL4.innerHTML = questionsArray[currentQuestionsIndex].choices[3];
 }
 
-function checkAnswer(event) {
-        if (element === questionsArray[currentQuestionsIndex].answer) {
-        console.log("correct " + totalScore)
-        totalScore++
-      }   else {
-        console.log("wrong")
-        totalScore--
-          if(totalScore <= 0) {
-            totalScore = 0
-        }
-    }
-}
+
 
 // checkAnswer()
 
@@ -109,21 +99,56 @@ function checkAnswer(event) {
   startBtn.style.visibility = "hidden";
   containerEl.style.visibility = "visible";
 }
+
+
+function checkAnswer(event) {
+        
+    //gets the value of button clicked using event.target
+    console.log(event.target.textContent);
+        var element= event.target.textContent
+        if (element === questionsArray[currentQuestionsIndex].answer) {
+        console.log("correct " + totalScore)
+        totalScore++
+        }   
+        else { 
+            timerEl.innerHTML = timeleft - 5 + " seconds remaining";    
+              console.log("wrong")
+              totalScore --                     
+        if(totalScore <= 0) {
+            totalScore = 0
+        }
+    }
+
+    getQuestion()
+}
+
+
+
 // function start() {
 
 //   getQuestion();
 // }
 
-choicesEL1.addEventListener("click", getQuestion);
-choicesEL2.addEventListener("click", getQuestion);
-choicesEL3.addEventListener("click", getQuestion);
-choicesEL4.addEventListener("click", getQuestion);
+choicesEL1.addEventListener("click", checkAnswer);
+choicesEL2.addEventListener("click", checkAnswer);
+choicesEL3.addEventListener("click", checkAnswer);
+choicesEL4.addEventListener("click", checkAnswer);
+
+
 
 function endQuiz() {
     currentQuestionsIndex = 0;
     questionEl.innerHTML = "Quiz Over!"
+    scoreEl.innerText = `Your Score was ${totalScore} of 4`;
     questconEl.style.display = "none";
-    
+    if(currentQuestionsIndex === 0){
+        
+
+        timerEl.style.visibility = "hidden"
+
+
+    }
+        
 }
 
 

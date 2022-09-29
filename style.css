@@ -6,8 +6,16 @@
 }
 
 
-body{
+body {
     background-color: rgb(161, 35, 35);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+    background: url("/images/214087.jpg") no-repeat fixed center;
+
+
+
+
 
 
 }
@@ -36,6 +44,7 @@ h2 {
 
     margin-bottom: 50px;
     color: goldenrod;
+    
 }
 
 #container {
@@ -49,6 +58,7 @@ h2 {
    padding: 20px;
    background-color: rgb(194, 26, 26);
    border-radius: 5px;
+   
 
 }
 
@@ -72,23 +82,23 @@ h2 {
     padding:30px;
     align-items: center;
 }
-.btn{
+.btn {
 
     height: 25px;
     width: 55px;
     margin-left: 25px;
     background-color: goldenrod;
+  
 
 
 
 }
-.rbtn{
+.rbtn { 
 
     height: 25px;
-    width: 50px;
+    width: 55px;
     margin-left: 25px;
     background-color: goldenrod;
-
+  
 
 }
-
