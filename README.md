@@ -1,18 +1,14 @@
+Roman History Quiz
+I developed this Quiz for myself to learn how to manipulate DOM elements using JavaScript and as an introduction to the use of the browser's local storage.
 
-Acceptance Criteria
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+Use of the site can be summed up with the following user story:
 
+![Picture](/images/Screenshot_6.png "Roman History Quiz")
 
+Technologies Used
+JavaScript
+HTML
+CSS
 
-Mock-Up
-The following animation demonstrates the application functionality:
+Contributors
+Chien Ting Yeh
